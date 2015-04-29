@@ -21,7 +21,7 @@ bool get_key_pressed(int nVirtKey)
 void get_button_state(bool *a, bool *b, bool *up, bool *down, bool *l, bool *r)
 {
 	if (a) *a = get_key_pressed(VK_NUMPAD5);
-	if (b) *b = get_key_pressed(VK_NUMPAD0) || trainer_switch_pressed() || get_key_pressed(VK_BACK);
+	if (b) *b = trainer_switch_pressed() || get_key_pressed(VK_BACK);
 	if (up) *up = get_key_pressed(VK_NUMPAD8);
 	if (down) *down = get_key_pressed(VK_NUMPAD2);
 	if (r) *r = get_key_pressed(VK_NUMPAD6);
