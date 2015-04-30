@@ -1292,6 +1292,8 @@ void reset_globals()
 	featurePlayerFastRunUpdated		=
 	featurePlayerSuperJump			=
 	featureWeaponNoReload			=
+	featureWeaponUnlimAmmoA			=
+	featureWeaponUnlimAmmoB			=
 	featureWeaponFireAmmo			=
 	featureWeaponExplosiveAmmo		=
 	featureWeaponExplosiveMelee		=
