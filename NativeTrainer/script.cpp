@@ -91,7 +91,7 @@ void check_player_model()
 		for (int i = 0; i < (sizeof(animalModels) / sizeof(animalModels[0])); i++) 
 			if (GAMEPLAY::GET_HASH_KEY((char *)animalModels[i]) == model)
 			{
-				set_status_text("turning to human");
+				set_status_text("Returning player to human");
 				model = GAMEPLAY::GET_HASH_KEY("player_zero");
 				STREAMING::REQUEST_MODEL(model);
 				while (!STREAMING::HAS_MODEL_LOADED(model))
@@ -481,8 +481,8 @@ int activeLineIndexPlayer = 0;
 
 void process_player_menu()
 {
-	const float lineWidth = 250.0;
-	const int lineCount = 14;
+	const float lineWidth = 300.0;
+	const int lineCount = 15;
 	
 	std::string caption = "PLAYER  OPTIONS";
 
@@ -497,6 +497,7 @@ void process_player_menu()
 		{"ADD CASH", NULL, NULL},
 		{"WANTED UP", NULL, NULL},
 		{"WANTED DOWN", NULL, NULL},
+		{"CLEAR WANTED", NULL, NULL},
 		{"NEVER WANTED", &featurePlayerNeverWanted, NULL},
 		{"INVINCIBLE", &featurePlayerInvincible, &featurePlayerInvincibleUpdated},
 		{"POLICE IGNORED", &featurePlayerIgnored, &featurePlayerIgnoredUpdated},
@@ -567,7 +568,7 @@ void process_player_menu()
 							if (ENTITY::DOES_ENTITY_EXIST(playerVeh) && !ENTITY::IS_ENTITY_DEAD(playerVeh))
 								VEHICLE::SET_VEHICLE_FIXED(playerVeh);
 						}
-						set_status_text("player fixed");
+						set_status_text("Fixed Player");
 					}
 					break;
 				// add cash
@@ -582,7 +583,7 @@ void process_player_menu()
 						val += 1000000;
 						STATS::STAT_SET_INT(hash, val, 1);
 					}
-					set_status_text("cash added");
+					set_status_text("Added Cash");
 					break;
 				// wanted up
 				case 4:	
@@ -590,7 +591,7 @@ void process_player_menu()
 					{
 						PLAYER::SET_PLAYER_WANTED_LEVEL(player, PLAYER::GET_PLAYER_WANTED_LEVEL(player) + 1, 0);
 						PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
-						set_status_text("wanted up");
+						set_status_text("Increased Wanted Level");
 					}
 					break;
 				// wanted down
@@ -599,9 +600,16 @@ void process_player_menu()
 					{
 						PLAYER::SET_PLAYER_WANTED_LEVEL(player, PLAYER::GET_PLAYER_WANTED_LEVEL(player) - 1, 0);
 						PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
-						set_status_text("wanted down");
+						set_status_text("Decreased Wanted Level");
 					}
 					break;
+				case 6:
+					if (bPlayerExists && PLAYER::GET_PLAYER_WANTED_LEVEL(player) > 0)
+					{
+						PLAYER::SET_PLAYER_WANTED_LEVEL(player, 0, 0);
+						PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+						set_status_text("Cleared Wanted Level");
+					}
 				// switchable features
 				default:
 					if (lines[activeLineIndexPlayer].pState)
@@ -639,7 +647,7 @@ int activeLineIndexWeapon = 0;
 
 void process_weapon_menu()
 {
-	const float lineWidth = 250.0;
+	const float lineWidth = 300.0;
 	const int lineCount = 8;
 
 	std::string caption = "WEAPON  OPTIONS";
@@ -710,7 +718,7 @@ void process_weapon_menu()
 				case 0:
 					for (int i = 0; i < sizeof(weaponNames) / sizeof(weaponNames[0]); i++)
 						WEAPON::GIVE_DELAYED_WEAPON_TO_PED(playerPed, GAMEPLAY::GET_HASH_KEY((char *)weaponNames[i]), 1000, 0);
-					set_status_text("all weapon added");
+					set_status_text("Added all weapons");
 					break;
 				// switchable features
 				default:
@@ -788,7 +796,7 @@ int activeLineIndexWorld = 0;
 
 void process_world_menu()
 {
-	const float lineWidth = 250.0;
+	const float lineWidth = 300.0;
 	const int lineCount = 5;
 
 	std::string caption = "WORLD  OPTIONS";
@@ -885,7 +893,7 @@ int activeLineIndexTime = 0;
 
 void process_time_menu()
 {
-	const float lineWidth = 250.0;
+	const float lineWidth = 300.0;
 	const int lineCount = 4;
 
 	std::string caption = "TIME  OPTIONS";
@@ -980,7 +988,7 @@ int activeLineIndexWeather = 0;
 
 void process_weather_menu()
 {
-	const float lineWidth = 250.0;
+	const float lineWidth = 300.0;
 	const int lineCount = 15;
 
 	std::string caption = "WEATHER  OPTIONS";
@@ -1087,7 +1095,7 @@ int activeLineIndexMisc = 0;
 
 void process_misc_menu()
 {
-	const float lineWidth = 250.0;
+	const float lineWidth = 300.0;
 	const int lineCount = 2;
 
 	std::string caption = "MISC  OPTIONS";
@@ -1174,7 +1182,7 @@ int activeLineIndexMain = 0;
 
 void process_main_menu()
 {
-	const float lineWidth = 350.0;
+	const float lineWidth = 300.0;
 	const int lineCount = 7;	
 
 	std::string caption = "NATIVE TRAINER (AB) ENHANCED";
