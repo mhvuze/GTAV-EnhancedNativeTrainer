@@ -48,6 +48,8 @@ bool featurePlayerFastRunUpdated		=	false;
 bool featurePlayerSuperJump				=	false;
 
 bool featureWeaponNoReload				=	false;
+bool featureWeaponUnlimAmmoA = false;
+bool featureWeaponUnlimAmmoB = false;
 bool featureWeaponFireAmmo				=	false;
 bool featureWeaponExplosiveAmmo			=	false;
 bool featureWeaponExplosiveMelee		=	false;
@@ -270,6 +272,36 @@ void update_features()
 					maxAmmo = WEAPON::GET_MAX_AMMO_IN_CLIP(playerPed, cur, 1);
 					if (maxAmmo > 0)
 						WEAPON::SET_AMMO_IN_CLIP(playerPed, cur, maxAmmo);
+				}
+			}
+		}
+	}
+
+	// unlimited ammo no ammo count
+	if (bPlayerExists && featureWeaponUnlimAmmoA)
+	{
+		Hash cur;
+		if (WEAPON::GET_CURRENT_PED_WEAPON(playerPed, &cur, 1))
+		{
+			if (WEAPON::IS_WEAPON_VALID(cur))
+			{
+				WEAPON::SET_PED_INFINITE_AMMO(playerPed, 1, cur);
+			}
+		}
+	}
+
+	// unlimited ammo with ammo count
+	if (bPlayerExists && featureWeaponUnlimAmmoB)
+	{
+		Hash cur;
+		if (WEAPON::GET_CURRENT_PED_WEAPON(playerPed, &cur, 1))
+		{
+			if (WEAPON::IS_WEAPON_VALID(cur))
+			{
+				int maxAmmo;
+				if (WEAPON::GET_MAX_AMMO(playerPed, cur, &maxAmmo))
+				{
+					WEAPON::SET_PED_AMMO(playerPed, cur, maxAmmo);
 				}
 			}
 		}
@@ -608,7 +640,7 @@ int activeLineIndexWeapon = 0;
 void process_weapon_menu()
 {
 	const float lineWidth = 250.0;
-	const int lineCount = 6;
+	const int lineCount = 8;
 
 	std::string caption = "WEAPON  OPTIONS";
 
@@ -617,12 +649,14 @@ void process_weapon_menu()
 		bool		*pState;
 		bool		*pUpdated;
 	} lines[lineCount] = {
-		{"GET ALL WEAPON",	NULL,						  NULL},
-		{"NO RELOAD",		&featureWeaponNoReload,		  NULL},
-		{"FIRE AMMO",		&featureWeaponFireAmmo,		  NULL},
-		{"EXPLOSIVE AMMO",  &featureWeaponExplosiveAmmo,  NULL},
-		{"EXPLOSIVE MELEE", &featureWeaponExplosiveMelee, NULL},
-		{"VEHICLE ROCKETS", &featureWeaponVehRockets,	  NULL}
+		{"GET ALL WEAPON",	NULL,								NULL},
+		{"NO RELOAD",		&featureWeaponNoReload,				NULL},
+		{"UNLIMITED AMMO", &featureWeaponUnlimAmmoA,			NULL },
+		{"UNLIMITED AMMO w/COUNT", &featureWeaponUnlimAmmoB,	NULL },
+		{"FIRE AMMO",		&featureWeaponFireAmmo,				NULL},
+		{"EXPLOSIVE AMMO",  &featureWeaponExplosiveAmmo,		NULL},
+		{"EXPLOSIVE MELEE", &featureWeaponExplosiveMelee,		NULL},
+		{"VEHICLE ROCKETS", &featureWeaponVehRockets,			NULL}
 	};
 
 	static LPCSTR weaponNames[] = {
@@ -1143,7 +1177,7 @@ void process_main_menu()
 	const float lineWidth = 250.0;
 	const int lineCount = 7;	
 
-	std::string caption = "NATIVE  TRAINER  (AB)";
+	std::string caption = "NATIVE  TRAINER  ENHANCED";
 
 	static LPCSTR lineCaption[lineCount] = {
 		"PLAYER",
