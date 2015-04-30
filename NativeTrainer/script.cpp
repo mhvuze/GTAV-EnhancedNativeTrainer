@@ -1174,7 +1174,7 @@ int activeLineIndexMain = 0;
 
 void process_main_menu()
 {
-	const float lineWidth = 250.0;
+	const float lineWidth = 350.0;
 	const int lineCount = 7;	
 
 	std::string caption = "NATIVE TRAINER (AB) ENHANCED";
