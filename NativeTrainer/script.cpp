@@ -164,7 +164,7 @@ void update_features()
 
 	// common variables
 	Player player = PLAYER::PLAYER_ID();
-	Ped playerPed = PLAYER::PLAYER_PED_ID();	
+	Ped playerPed = PLAYER::PLAYER_PED_ID();
 	BOOL bPlayerExists = ENTITY::DOES_ENTITY_EXIST(playerPed);
 
 	// player invincible
@@ -327,7 +327,25 @@ void update_features()
 
 	// hide hud
 	if (featureMiscHideHud)
-		UI::HIDE_HUD_AND_RADAR_THIS_FRAME();
+	{
+	UI::HIDE_HUD_AND_RADAR_THIS_FRAME();
+	}
+
+	// additional hotkeys
+	
+	// clear wanted level
+	if (bPlayerExists && PLAYER::GET_PLAYER_WANTED_LEVEL(player) > 0)
+	{
+		bool wipeWanted = get_key_pressed(VK_OEM_PERIOD);
+
+		if (wipeWanted)
+		{
+			PLAYER::SET_PLAYER_WANTED_LEVEL(player, 0, 0);
+			PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+			set_status_text("Cleared Wanted Level");
+		}
+
+	}
 }
 
 /*
@@ -1188,13 +1206,13 @@ void process_main_menu()
 	std::string caption = "NATIVE TRAINER (AB) ENHANCED";
 
 	static LPCSTR lineCaption[lineCount] = {
-		"PLAYER",
-		"WEAPON",
-		"VEHICLE",
-		"WORLD",
-		"TIME",
-		"WEATHER",
-		"MISC"
+		"Player",
+		"Weapons",
+		"Vehicles",
+		"World",
+		"Time",
+		"Weather",
+		"Misc"
 	};
 
 	DWORD waitTime = 150;
