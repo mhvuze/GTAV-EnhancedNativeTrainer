@@ -344,8 +344,18 @@ void update_features()
 			PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
 			set_status_text("Cleared Wanted Level");
 		}
-
 	}
+	// fix vehicle
+	if (bPlayerExists && PED::IS_PED_IN_ANY_VEHICLE(playerPed, 0))
+	{
+		bool fixVehicle = get_key_pressed(VK_OEM_2);
+		if (fixVehicle)
+		{
+			VEHICLE::SET_VEHICLE_FIXED(PED::GET_VEHICLE_PED_IS_USING(playerPed));
+		}
+		
+	}
+
 }
 
 /*

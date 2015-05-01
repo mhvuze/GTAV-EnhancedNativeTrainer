@@ -22,24 +22,24 @@ struct tele_location {
 };
 
 std::vector<tele_location> LOCATIONS = {
-	{ "MARKER" },
-	{ "MICHAEL'S HOUSE", -852.4f, 160.0f, 65.6f },
-	{ "FRANKLIN'S HOUSE", 7.9f, 548.1f, 175.5f },
-	{ "TREVOR'S TRAILER", 1985.7f, 3812.2f, 32.2f },
-	{ "AIRPORT ENTRANCE", -1034.6f, -2733.6f, 13.8f },
-	{ "AIRPORT FIELD", -1336.0f, -3044.0f, 13.9f },
-	{ "ELYSIAN ISLAND", 338.2f, -2715.9f, 38.5f },
-	{ "JETSAM", 760.4f, -2943.2f, 5.8f },
-	{ "STRIPCLUB", 127.4f, -1307.7f, 29.2f },
-	{ "ELBURRO HEIGHTS", 1384.0f, -2057.1f, 52.0f },
-	{ "FERRIS WHEEL", -1670.7f, -1125.0f, 13.0f },
-	{ "CHUMASH", -3192.6f, 1100.0f, 20.2f },
-	{ "WINDFARM", 2354.0f, 1830.3f, 101.1f },
-	{ "MILITARY BASE", -2047.4f, 3132.1f, 32.8f },
-	{ "MCKENZIE AIRFIELD", 2121.7f, 4796.3f, 41.1f },
-	{ "DESERT AIRFIELD", 1747.0f, 3273.7f, 41.1f },
-	{ "CHILLIAD", 425.4f, 5614.3f, 766.5f },
-	{ "NORTH YANKTON", 3360.19f, -4849.67f, 111.8f, load_north_yankton, unload_north_yankton, false },
+	{ "Waypoint Market" },
+	{ "Michael's House", -852.4f, 160.0f, 65.6f },
+	{ "Franklin's House", 7.9f, 548.1f, 175.5f },
+	{ "Trevor's Trailer", 1985.7f, 3812.2f, 32.2f },
+	{ "Airport Enterance", -1034.6f, -2733.6f, 13.8f },
+	{ "Airport Field", -1336.0f, -3044.0f, 13.9f },
+	{ "Ekysuan Island", 338.2f, -2715.9f, 38.5f },
+	{ "Jetsam", 760.4f, -2943.2f, 5.8f },
+	{ "Stripclub", 127.4f, -1307.7f, 29.2f },
+	{ "Elburro Heights", 1384.0f, -2057.1f, 52.0f },
+	{ "Ferris Wheel", -1670.7f, -1125.0f, 13.0f },
+	{ "Chumash", -3192.6f, 1100.0f, 20.2f },
+	{ "Windfarm", 2354.0f, 1830.3f, 101.1f },
+	{ "Military Base", -2047.4f, 3132.1f, 32.8f },
+	{ "McKenzie Airfield", 2121.7f, 4796.3f, 41.1f },
+	{ "Desert Airfield", 1747.0f, 3273.7f, 41.1f },
+	{ "Chilliad", 425.4f, 5614.3f, 766.5f },
+	{ "North Yankton", 3360.19f, -4849.67f, 111.8f, load_north_yankton, unload_north_yankton, false },
 
 	// Extra locations coordinates source: "PulseR_HD" @ http://gtaforums.com/topic/789786-vrelwip-simple-trainer-enhancements-skin-detail-chooser-menu-architecture/?p=1067398379
 	{ "10 Car Garage Back Room", 223.193f, -967.322f, 99.000f },
@@ -269,7 +269,7 @@ bool onconfirm_teleport_location(int selection, std::string caption, int locatio
 
 bool process_teleport_menu()
 {
-	std::string caption = "TELEPORT";
+	std::string caption = "Teleport";
 
 	std::vector<std::string> menuCaptions;
 	std::vector<int> menuIndexes;

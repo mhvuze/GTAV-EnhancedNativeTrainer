@@ -26,14 +26,14 @@ struct struct_door_options {
 };
 
 std::vector<struct_door_options> DOOR_OPTIONS = {
-	{ "OPEN INSTANTLY", &featureVehicleDoorInstant },
-	{ "FRONT RIGHT", NULL }, //INDEX 0
-	{ "FRONT LEFT", NULL }, //INDEX 1
-	{ "BACK RIGHT", NULL }, //INDEX 2
-	{ "BACK LEFT", NULL }, //INDEX 3 (This opens the ramp on the An-225|CARGOPLANE)
-	{ "HOOD", NULL }, //INDEX 4
-	{ "TRUNK", NULL }, //INDEX 5 (Opens ramp on C-130|TITAN)
-	{ "TRUNK 2", NULL } //INDEX 6 (What uses this?)
+	{ "Open Instantly", &featureVehicleDoorInstant },
+	{ "Front Right", NULL }, //INDEX 0
+	{ "Front Left", NULL }, //INDEX 1
+	{ "Back Right", NULL }, //INDEX 2
+	{ "Bacl Left", NULL }, //INDEX 3 (This opens the ramp on the An-225|CARGOPLANE)
+	{ "Hood", NULL }, //INDEX 4
+	{ "Trunk", NULL }, //INDEX 5 (Opens ramp on C-130|TITAN)
+	{ "Trunk 2", NULL } //INDEX 6 (What uses this?)
 };
 
 int doorOptionsMenuIndex = 0;
