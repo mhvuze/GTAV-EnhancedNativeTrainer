@@ -352,6 +352,7 @@ void update_features()
 		if (fixVehicle)
 		{
 			VEHICLE::SET_VEHICLE_FIXED(PED::GET_VEHICLE_PED_IS_USING(playerPed));
+			set_status_text("Fixed Vehicle");
 		}
 		
 	}
