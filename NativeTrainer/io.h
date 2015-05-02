@@ -13,8 +13,9 @@ https://github.com/gtav-ent/GTAV-EnhancedNativeTrainer
 #include "inc\natives.h"
 #include "inc\types.h"
 #include "inc\enums.h"
-
 #include "inc\main.h"
+
+#include "keyboard.h"
 
 bool get_key_pressed(int nVirtKey);
 

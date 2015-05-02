@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="io.cpp" />
+    <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu_functions.cpp" />
     <ClCompile Include="script.cpp" />
@@ -24,6 +25,7 @@
     <ClInclude Include="inc\nativeCaller.h" />
     <ClInclude Include="inc\types.h" />
     <ClInclude Include="io.h" />
+    <ClInclude Include="keyboard.h" />
     <ClInclude Include="menu_functions.h" />
     <ClInclude Include="script.h" />
     <ClInclude Include="skins.h" />
