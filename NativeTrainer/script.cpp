@@ -12,9 +12,11 @@ https://github.com/gtav-ent/GTAV-EnhancedNativeTrainer
 	F4					activate
 	NUM2/8/4/6			navigate thru the menus and lists (numlock must be on)
 	NUM5 				select
-	NUM0/BACKSPACE/F4 	back
+	BACKSPACE/F4		back
 	NUM9/3 				use vehicle boost when active
 	NUM+ 				use vehicle rockets when active
+	NUMx				wipe wanted level
+	NUM-				fix player
 */
 
 #include "io.h"
@@ -296,6 +298,36 @@ void update_features()
 	// hide hud
 	if (featureMiscHideHud)
 		UI::HIDE_HUD_AND_RADAR_THIS_FRAME();
+
+	// more hotkeys
+	// wipe wanted level
+	if (bPlayerExists && PLAYER::GET_PLAYER_WANTED_LEVEL(player) > 0)
+	{
+		bool wipeWanted = get_key_pressed(VK_MULTIPLY);
+
+		if (wipeWanted)
+		{
+			PLAYER::SET_PLAYER_WANTED_LEVEL(player, 0, 0);
+			PLAYER::SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+			set_status_text("wanted level wiped");
+		}
+	}
+
+	// fix player
+	bool fixPlayer = get_key_pressed(VK_SUBTRACT);
+
+	if (fixPlayer)
+	{
+		ENTITY::SET_ENTITY_HEALTH(playerPed, ENTITY::GET_ENTITY_MAX_HEALTH(playerPed));
+		PED::ADD_ARMOUR_TO_PED(playerPed, PLAYER::GET_PLAYER_MAX_ARMOUR(player) - PED::GET_PED_ARMOUR(playerPed));
+		if (PED::IS_PED_IN_ANY_VEHICLE(playerPed, 0))
+		{
+			Vehicle playerVeh = PED::GET_VEHICLE_PED_IS_USING(playerPed);
+			if (ENTITY::DOES_ENTITY_EXIST(playerVeh) && !ENTITY::IS_ENTITY_DEAD(playerVeh))
+				VEHICLE::SET_VEHICLE_FIXED(playerVeh);
+		}
+		set_status_text("player fixed");
+	}
 }
 
 /*
