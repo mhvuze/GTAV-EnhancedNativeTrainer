@@ -11,3 +11,9 @@ However, before doing anything, please familiarise yourself with [our wiki](http
 Update 20 was released on June 8.
 
 Pull request processing etc is now back to normal after a holiday.
+
+# Changes in this personal branch
+
+- no animation cancel for airbreak
+
+- new speed options (very slow & crawling) for better placement
