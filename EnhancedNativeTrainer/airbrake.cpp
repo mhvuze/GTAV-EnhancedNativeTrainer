@@ -188,6 +188,7 @@ void moveThroughDoor()
 	float yVect = forwardPush * cos(degToRad(curHeading));
 
 	ENTITY::SET_ENTITY_COORDS_NO_OFFSET(playerPed, curLocation.x + xVect, curLocation.y + yVect, curLocation.z, 1, 1, 1);
+	ENTITY::SET_ENTITY_COLLISION(playerPed, true, true);
 }
 
 bool lshiftWasDown = false;
@@ -249,6 +250,7 @@ void airbrake(bool inVehicle)
 
 	ENTITY::SET_ENTITY_VELOCITY(playerPed, 0, 0, 0);
 	ENTITY::SET_ENTITY_ROTATION(playerPed, 0, 0, 0, 0, false);
+	ENTITY::SET_ENTITY_COLLISION(playerPed, false, false);
 	ENTITY::SET_ENTITY_COORDS_NO_OFFSET(playerPed, curLocation.x, curLocation.y, curLocation.z, xBoolParam, yBoolParam, zBoolParam);
 	ENTITY::SET_ENTITY_HEADING(playerPed, curHeading);
 
@@ -260,7 +262,7 @@ void airbrake(bool inVehicle)
 	if (IsKeyJustUp(keyConfig->key_airbrake_speed))
 	{
 		travelSpeed++;
-		if (travelSpeed > 2)
+		if (travelSpeed > 4)
 		{
 			travelSpeed = 0;
 		}
