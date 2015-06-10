@@ -13,7 +13,7 @@ Update 20 was released on June 8.
 Pull request processing etc is now back to normal after a holiday.
 
 
-** Changes in this personal branch **
+**Changes in this personal branch**
 
 - no animation cancel for airbreak
 
@@ -21,6 +21,6 @@ Pull request processing etc is now back to normal after a holiday.
 
 - toggles no collision once you enable airbreak
 
-** Known bugs present in this personal branch **
+**Known bugs present in this personal branch**
 
 - collision doesn't turn back on after disabling airbreak (temp fix: use hotkey_throughdoor after disabling airbreak to turn it back on, make sure you're above ground)
